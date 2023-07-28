@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7WF-2Q-Gi4">
+                                <rect key="frame" x="10" y="59" width="373" height="50"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="17f-oq-JC5">
+                                        <rect key="frame" x="0.0" y="0.99999999999999645" width="40" height="48.333333333333329"/>
+                                        <color key="tintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="PgS-vK-0nv"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LzF-XF-47p">
+                                        <rect key="frame" x="50" y="0.0" width="273" height="50"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Q5o-Zr-hst">
+                                        <rect key="frame" x="333" y="0.99999999999999645" width="40" height="48.333333333333329"/>
+                                        <color key="tintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="hUC-JT-DKN"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rAF-o0-lBx"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkg-7c-gHc">
+                                <rect key="frame" x="30" y="139" width="43" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.3294117647" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partly Cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgW-D6-5qn">
+                                <rect key="frame" x="261.33333333333331" y="139" width="101.66666666666669" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.sun.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rnH-RK-H4C">
+                                <rect key="frame" x="74.999999999999986" y="199.33333333333334" width="243.66666666666669" height="126.66666666666666"/>
+                                <color key="tintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="243" id="2a5-Sm-Rkd"/>
+                                    <constraint firstAttribute="height" constant="128" id="Q4N-JC-OxY"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGf-ne-Yqx">
+                                <rect key="frame" x="165" y="377" width="63" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="RvE-ss-S9N">
+                                <rect key="frame" x="130" y="438" width="133" height="32"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="F"/>
+                                    <segment title="C"/>
+                                </segments>
+                                <color key="tintColor" name="AccentColor"/>
+                                <color key="selectedSegmentTintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZI-HA-yFD">
+                                <rect key="frame" x="0.0" y="504" width="393" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.72790008780000004" green="0.9400646091" blue="0.99216693639999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.46274509800000002" green="0.83921568629999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CgW-D6-5qn" secondAttribute="trailing" constant="30" id="26V-yF-BKZ"/>
+                            <constraint firstItem="vkg-7c-gHc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="API-mA-yyl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RvE-ss-S9N" secondAttribute="trailing" constant="130" id="EBj-Ld-nOD"/>
+                            <constraint firstItem="rnH-RK-H4C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="75" id="EkL-Bj-jCE"/>
+                            <constraint firstItem="CgW-D6-5qn" firstAttribute="top" secondItem="7WF-2Q-Gi4" secondAttribute="bottom" constant="30" id="FRW-xO-5oZ"/>
+                            <constraint firstItem="RvE-ss-S9N" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="130" id="HKd-pn-fvg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7WF-2Q-Gi4" secondAttribute="trailing" constant="10" id="JCY-z9-oG9"/>
+                            <constraint firstItem="HGf-ne-Yqx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="165" id="JnV-5n-9jU"/>
+                            <constraint firstItem="rnH-RK-H4C" firstAttribute="top" secondItem="7WF-2Q-Gi4" secondAttribute="bottom" constant="90" id="PpT-pB-Cl1"/>
+                            <constraint firstItem="7WF-2Q-Gi4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="QNF-gZ-qle"/>
+                            <constraint firstItem="RvE-ss-S9N" firstAttribute="top" secondItem="HGf-ne-Yqx" secondAttribute="bottom" constant="25" id="Qfy-8s-ev0"/>
+                            <constraint firstItem="7WF-2Q-Gi4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Rsl-v9-wHF"/>
+                            <constraint firstItem="HGf-ne-Yqx" firstAttribute="top" secondItem="rnH-RK-H4C" secondAttribute="bottom" constant="50" id="dLj-GL-nSv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zZI-HA-yFD" secondAttribute="trailing" id="g3H-tB-6Ve"/>
+                            <constraint firstItem="zZI-HA-yFD" firstAttribute="top" secondItem="RvE-ss-S9N" secondAttribute="bottom" constant="35" id="hQZ-Fa-mt4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rnH-RK-H4C" secondAttribute="trailing" constant="75" id="hza-9b-LgK"/>
+                            <constraint firstItem="vkg-7c-gHc" firstAttribute="top" secondItem="7WF-2Q-Gi4" secondAttribute="bottom" constant="30" id="o3V-xS-WUf"/>
+                            <constraint firstItem="zZI-HA-yFD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qcY-VQ-Sdc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HGf-ne-Yqx" secondAttribute="trailing" constant="165" id="w8W-BR-7Hs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="location" destination="17f-oq-JC5" id="k0F-u9-XmO"/>
+                        <outlet property="searchButton" destination="Q5o-Zr-hst" id="0fm-6j-58T"/>
+                        <outlet property="weatherImage" destination="rnH-RK-H4C" id="hiU-Tj-Bxe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cloud.sun.fill" catalog="system" width="128" height="96"/>
+        <image name="location.fill" catalog="system" width="128" height="119"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
