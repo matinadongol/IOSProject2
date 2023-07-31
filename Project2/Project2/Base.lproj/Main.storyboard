@@ -64,14 +64,14 @@
                                     <constraint firstAttribute="height" constant="128" id="Q4N-JC-OxY"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGf-ne-Yqx">
-                                <rect key="frame" x="165" y="377" width="63" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGf-ne-Yqx">
+                                <rect key="frame" x="165" y="377" width="63" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="RvE-ss-S9N">
-                                <rect key="frame" x="130" y="438" width="133" height="32"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RvE-ss-S9N">
+                                <rect key="frame" x="130" y="402" width="133" height="32"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="F"/>
@@ -79,9 +79,12 @@
                                 </segments>
                                 <color key="tintColor" name="AccentColor"/>
                                 <color key="selectedSegmentTintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="selectedTempType:" destination="BYZ-38-t0r" eventType="valueChanged" id="2Lz-wy-T5h"/>
+                                </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZI-HA-yFD">
-                                <rect key="frame" x="0.0" y="504" width="393" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZI-HA-yFD">
+                                <rect key="frame" x="0.0" y="468" width="393" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -119,10 +122,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lblCityName" destination="zZI-HA-yFD" id="4cR-su-Mfg"/>
+                        <outlet property="lblTemperature" destination="HGf-ne-Yqx" id="eVt-um-G9Q"/>
+                        <outlet property="lblWeatherDescription" destination="CgW-D6-5qn" id="OaY-h6-25N"/>
                         <outlet property="locationButton" destination="v5n-Ly-9uz" id="pB5-zF-CfJ"/>
                         <outlet property="searchButton" destination="pct-C8-JYr" id="2Is-LJ-daZ"/>
                         <outlet property="searchInput" destination="LzF-XF-47p" id="jS4-ga-gr6"/>
-                        <outlet property="weatherImage" destination="rnH-RK-H4C" id="hiU-Tj-Bxe"/>
+                        <outlet property="weatherImage" destination="rnH-RK-H4C" id="zIA-Kg-zjS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
