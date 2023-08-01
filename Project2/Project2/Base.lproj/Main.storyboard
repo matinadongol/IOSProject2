@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -72,8 +73,8 @@
                                 <rect key="frame" x="130" y="402" width="133" height="32"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
-                                    <segment title="F"/>
                                     <segment title="C"/>
+                                    <segment title="F"/>
                                 </segments>
                                 <color key="tintColor" name="AccentColor"/>
                                 <color key="selectedSegmentTintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -92,6 +93,9 @@
                                 <color key="tintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cities"/>
+                                <connections>
+                                    <action selector="citiesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kvu-Om-zbU"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ty-yV-wyU" userLabel="LblTemp_F">
                                 <rect key="frame" x="10" y="377" width="373" height="0.0"/>
@@ -145,11 +149,49 @@
                         <outlet property="searchButton" destination="pct-C8-JYr" id="2Is-LJ-daZ"/>
                         <outlet property="searchInput" destination="LzF-XF-47p" id="jS4-ga-gr6"/>
                         <outlet property="weatherImage" destination="rnH-RK-H4C" id="zIA-Kg-zjS"/>
+                        <segue destination="Ya0-nP-VfW" kind="show" id="LUV-Ua-ZAA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
+        </scene>
+        <!--Weather List View Controller-->
+        <scene sceneID="c1P-wy-byd">
+            <objects>
+                <viewController id="Ya0-nP-VfW" customClass="WeatherListViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="evI-Pc-CkJ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="So8-ms-nvV">
+                                <rect key="frame" x="140" y="50" width="113" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fZk-vu-hus">
+                                <rect key="frame" x="20" y="126" width="353" height="676"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RnQ-ow-M8M"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fZk-vu-hus" firstAttribute="leading" secondItem="RnQ-ow-M8M" secondAttribute="leading" constant="20" id="8GO-Zq-1ss"/>
+                            <constraint firstItem="RnQ-ow-M8M" firstAttribute="bottom" secondItem="fZk-vu-hus" secondAttribute="bottom" constant="40" id="9dG-Pa-mXG"/>
+                            <constraint firstItem="fZk-vu-hus" firstAttribute="top" secondItem="So8-ms-nvV" secondAttribute="bottom" constant="40" id="FpH-Ba-7Qu"/>
+                            <constraint firstItem="So8-ms-nvV" firstAttribute="top" secondItem="RnQ-ow-M8M" secondAttribute="top" constant="50" id="YLI-PS-zqt"/>
+                            <constraint firstItem="So8-ms-nvV" firstAttribute="leading" secondItem="RnQ-ow-M8M" secondAttribute="leading" constant="140" id="cxz-kT-ELR"/>
+                            <constraint firstItem="RnQ-ow-M8M" firstAttribute="trailing" secondItem="So8-ms-nvV" secondAttribute="trailing" constant="140" id="jit-Ea-SY7"/>
+                            <constraint firstItem="RnQ-ow-M8M" firstAttribute="trailing" secondItem="fZk-vu-hus" secondAttribute="trailing" constant="20" id="uiF-J1-QfA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gNw-Ta-zYr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9TH-c7-Vv8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1245.0381679389313" y="-5.6338028169014089"/>
         </scene>
     </scenes>
     <resources>
@@ -157,5 +199,8 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

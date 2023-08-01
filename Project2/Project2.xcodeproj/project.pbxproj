@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81674F802A799B1700A26402 /* WeatherListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81674F7F2A799B1700A26402 /* WeatherListViewController.swift */; };
 		94B67A572A7456C1009BFA78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B67A562A7456C1009BFA78 /* AppDelegate.swift */; };
 		94B67A592A7456C1009BFA78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B67A582A7456C1009BFA78 /* SceneDelegate.swift */; };
 		94B67A5B2A7456C1009BFA78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B67A5A2A7456C1009BFA78 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		81674F7F2A799B1700A26402 /* WeatherListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewController.swift; sourceTree = "<group>"; };
 		94B67A532A7456C1009BFA78 /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B67A562A7456C1009BFA78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94B67A582A7456C1009BFA78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				94B67A612A7456C2009BFA78 /* LaunchScreen.storyboard */,
 				94B67A642A7456C2009BFA78 /* Info.plist */,
 				94BEF76B2A7858FD008B143D /* WeatherIconMap.swift */,
+				81674F7F2A799B1700A26402 /* WeatherListViewController.swift */,
 			);
 			path = Project2;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81674F802A799B1700A26402 /* WeatherListViewController.swift in Sources */,
 				94B67A5B2A7456C1009BFA78 /* ViewController.swift in Sources */,
 				94B67A572A7456C1009BFA78 /* AppDelegate.swift in Sources */,
 				94BEF76C2A7858FD008B143D /* WeatherIconMap.swift in Sources */,

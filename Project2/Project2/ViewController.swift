@@ -25,10 +25,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var selectedSegmentIndex: Int = 0
     var locationName = ""
     var tempInC: String = ""
+    var tz_id: String = ""
     var tempInF: String = ""
     var locationManager: CLLocationManager!
-    
+    var count = 0
 
+    
+    class Weather {
+        var cityName: String
+        var tempInC: String
+        var temInF: String
+        var weatherCode: Int
+        var tz_id: String
+        
+        init(cityName: String, tempInC: String, tempInF: String, weatherCode: Int, tz_id:String){
+            self.cityName = cityName
+            self.tempInC = tempInC
+            self.temInF = tempInF
+            self.weatherCode = weatherCode
+            self.tz_id = tz_id
+        }
+    }
+    
+    var weatherList: [Weather] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         let config = UIImage.SymbolConfiguration(paletteColors: [.systemBlue, .systemYellow])
         self.weatherImage.preferredSymbolConfiguration = config
         lblCityName.text = locationName
-        lblTemp_C.isHidden = true
+        lblTemp_F.isHidden = true
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -51,16 +70,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         DispatchQueue.main.async{
             self.setLocation()
         }
-
+        print("sadcsc",weatherList)
     }
     
+    @IBAction func citiesButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "weatherList", sender: self)
+    }
     @IBAction func switchTemperature(_ sender: Any) {
         let selectedSegment = (sender as AnyObject).selectedSegmentIndex
-        
-        if selectedSegment == 0 {
+        for list in weatherList{
+            print("list: \(list.cityName)")
+        }
+        if selectedSegment == 1 {
             lblTemp_C.isHidden = true
             lblTemp_F.isHidden = false
-        } else if selectedSegment == 1 {
+        } else if selectedSegment == 0 {
             lblTemp_C.isHidden = false
             lblTemp_F.isHidden = true
         }
@@ -89,6 +113,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         let country: String
         let lat: Float
         let lon: Float
+        let tz_id: String
     }
 
     struct Current: Decodable {
@@ -117,6 +142,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         return wrapper
     }
     
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "weatherList" {
+            let destinationVC = segue.destination as! WeatherListViewController
+            
+            }
+        }
+    
     func fetchWeather(searchValue: String) {
         guard !searchValue.isEmpty else {
             return
@@ -143,6 +176,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                     DispatchQueue.main.async{
                         print("ASDSAD \(locationData)")
                         self.setValuesInUI(data: locationData)
+                        var weatherObj = Weather(cityName: locationData.location.name, tempInC: String(locationData.current.temp_c), tempInF: String(locationData.current.temp_f), weatherCode: locationData.current.condition.code, tz_id: locationData.location.tz_id )
+                        if self.count >= 1{
+                            for weather in self.weatherList{
+                                let tz_id = weather.tz_id
+                                if(tz_id != locationData.location.tz_id){
+                                    self.weatherList.append(weatherObj)
+                                    print(tz_id)
+                                    print(locationData.location.tz_id)
+                                    break
+                                }
+                            }
+                        } else {
+                            self.weatherList.append(weatherObj)
+                            self.count += 1
+                            print(self.count)
+                        }
+                        
+                        print("Array: \(self.weatherList)")
                     }
                 }
             }
@@ -169,6 +220,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             self.lblWeatherDescription.text = data.current.condition.text
             self.lblTemp_C.text = String(data.current.temp_c) + " °C"
             self.lblTemp_F.text = String(data.current.temp_f) + " °F"
+            self.tz_id = data.location.tz_id
 
             let weatherCode = data.current.condition.code
                                 
