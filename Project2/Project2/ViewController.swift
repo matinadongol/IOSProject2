@@ -31,21 +31,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var count = 0
 
     
-    class Weather {
-        var cityName: String
-        var tempInC: String
-        var temInF: String
-        var weatherCode: Int
-        var tz_id: String
-        
-        init(cityName: String, tempInC: String, tempInF: String, weatherCode: Int, tz_id:String){
-            self.cityName = cityName
-            self.tempInC = tempInC
-            self.temInF = tempInF
-            self.weatherCode = weatherCode
-            self.tz_id = tz_id
-        }
-    }
     
     var weatherList: [Weather] = []
     
@@ -74,8 +59,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     @IBAction func citiesButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "weatherList", sender: self)
+        performSegue(withIdentifier: "weatherListScreen", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "weatherListScreen" {
+                let destinationVC = segue.destination as! WeatherListViewController
+                destinationVC.weatherList = weatherList
+                }
+            }
+    
     @IBAction func switchTemperature(_ sender: Any) {
         let selectedSegment = (sender as AnyObject).selectedSegmentIndex
         for list in weatherList{
@@ -143,12 +136,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "weatherList" {
-            let destinationVC = segue.destination as! WeatherListViewController
-            
-            }
-        }
+//
     
     func fetchWeather(searchValue: String) {
         guard !searchValue.isEmpty else {
@@ -166,12 +154,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                     print (error ?? "")
                     return
                 }
-                
                 guard let data = data else {
                     print("No data")
                     return
                 }
-                
                 if let locationData = self.parseJson(data: data){
                     DispatchQueue.main.async{
                         print("ASDSAD \(locationData)")
@@ -207,8 +193,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             print(location)
             self.locationName = "\(location.latitude),\(location.longitude)"
             DispatchQueue.main.async{
-                
-                self.fetchWeather(searchValue: self.locationName)}
+                self.fetchWeather(searchValue: self.locationName)
+            }
         }else{
             self.fetchWeather(searchValue: self.locationName)
         }
@@ -231,9 +217,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             let nightTextFieldColor = UIColor(red: 0.27, green: 0.29, blue: 0.40, alpha: 1.00)
             let dayTextFieldColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.00)
             let yellowColor = UIColor(red: 0.96, green: 0.78, blue: 0, alpha: 1.00)
-            
-            
-
             if (data.current.is_day == 1) {
                 var dayColorsConfig = UIImage.SymbolConfiguration(paletteColors: [.white, yellowColor])
                 if(weatherCode == 1000 ){
@@ -258,13 +241,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 self.lblTemp_F.textColor = nightTextColor
                 self.btnCities.tintColor = nightTextColor
             }
-            
-            
         }
-
     }
-    
 }
+
+
   
     
 

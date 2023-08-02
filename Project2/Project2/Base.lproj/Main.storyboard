@@ -149,7 +149,7 @@
                         <outlet property="searchButton" destination="pct-C8-JYr" id="2Is-LJ-daZ"/>
                         <outlet property="searchInput" destination="LzF-XF-47p" id="jS4-ga-gr6"/>
                         <outlet property="weatherImage" destination="rnH-RK-H4C" id="zIA-Kg-zjS"/>
-                        <segue destination="Ya0-nP-VfW" kind="show" id="LUV-Ua-ZAA"/>
+                        <segue destination="Ya0-nP-VfW" kind="show" identifier="weatherListScreen" id="LeZ-Id-uT6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -173,6 +173,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fZk-vu-hus">
                                 <rect key="frame" x="20" y="126" width="353" height="676"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cityWeatherCells" rowHeight="62" id="M0a-ZK-O8c">
+                                        <rect key="frame" x="0.0" y="50" width="353" height="62"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M0a-ZK-O8c" id="PSp-NC-rWW">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="62"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RnQ-ow-M8M"/>
@@ -188,6 +198,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gNw-Ta-zYr"/>
+                    <connections>
+                        <outlet property="tableView" destination="fZk-vu-hus" id="fzR-fl-Rmk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9TH-c7-Vv8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
