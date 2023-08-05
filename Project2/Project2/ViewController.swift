@@ -20,6 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var searchInput: UITextField!
     @IBOutlet weak var lblWeatherDescription: UILabel!
     @IBOutlet weak var btnCities: UIButton!
+    
     let apiKey = "89221bdc6a8c451a9a8212939232807"
     let baseURL = "http://api.weatherapi.com/v1/current.json"
     var selectedSegmentIndex: Int = 0
@@ -27,74 +28,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var tempInC: String = ""
     var tz_id: String = ""
     var tempInF: String = ""
+    var tempSelectedIndex: Int = 0
     var locationManager: CLLocationManager!
     var count = 0
-
-    
-    
     var weatherList: [Weather] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        let searchButtonImage = UIImage(systemName: "magnifyingglass")
-        searchButton.setImage(searchButtonImage, for: .normal)
-        let locationButtonImage = UIImage(systemName: "location.fill")
-        locationButton.setImage(locationButtonImage, for: .normal)
-        let config = UIImage.SymbolConfiguration(paletteColors: [.systemBlue, .systemYellow])
-        self.weatherImage.preferredSymbolConfiguration = config
-        lblCityName.text = locationName
-        lblTemp_F.isHidden = true
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        
         DispatchQueue.main.async{
             self.setLocation()
         }
-        print("sadcsc",weatherList)
     }
     
-    @IBAction func citiesButton(_ sender: Any) {
-        performSegue(withIdentifier: "weatherListScreen", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "weatherListScreen" {
-                let destinationVC = segue.destination as! WeatherListViewController
-                destinationVC.weatherList = weatherList
-                }
-            }
-    
-    @IBAction func switchTemperature(_ sender: Any) {
-        let selectedSegment = (sender as AnyObject).selectedSegmentIndex
-        for list in weatherList{
-            print("list: \(list.cityName)")
-        }
-        if selectedSegment == 1 {
-            lblTemp_C.isHidden = true
-            lblTemp_F.isHidden = false
-        } else if selectedSegment == 0 {
-            lblTemp_C.isHidden = false
-            lblTemp_F.isHidden = true
-        }
-    }
-    @IBAction func searchClicked(_ sender: Any) {
-        let searchValue = searchInput.text
-        if let search = searchValue {
-            print("search:  \(String(describing: search))")
-            fetchWeather(searchValue: search)
-            print("locaitonName: \(locationName)")
-            
-        }
-    }
-    
-    @IBAction func locationButton(_ sender: Any) {
-        setLocation()
-    }
     struct LocationWrapper: Decodable{
         let location: Location
         let current: Current
@@ -128,22 +80,63 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         
         do{
             wrapper = try decoder.decode(LocationWrapper.self, from: data)
-            
         }catch{
             print(error)
         }
         return wrapper
     }
     
-
-//
+    @IBAction func citiesButton(_ sender: Any) {
+        performSegue(withIdentifier: "weatherListScreen", sender: self)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "weatherListScreen" {
+                let destinationVC = segue.destination as! WeatherListViewController
+                destinationVC.weatherList = weatherList
+                destinationVC.selectedTemperature = tempSelectedIndex
+                }
+            }
+    
+    @IBAction func switchTemperature(_ sender: Any) {
+        let selectedSegment = (sender as AnyObject).selectedSegmentIndex
+        for list in weatherList{
+            print("list: \(list.cityName)")
+        }
+        if selectedSegment == 1 {
+            lblTemp_C.isHidden = true
+            lblTemp_F.isHidden = false
+        } else if selectedSegment == 0 {
+            lblTemp_C.isHidden = false
+            lblTemp_F.isHidden = true
+        }
+        tempSelectedIndex = selectedSegment ?? 0
+    }
+    
+    @IBAction func searchClicked(_ sender: Any) {
+        let searchValue = searchInput.text
+        if let search = searchValue {
+            if search != ""{
+                let trimmedSearch = search.replacingOccurrences(of: " ", with: "")
+                print(trimmedSearch)
+                fetchWeather(searchValue: trimmedSearch)
+            }
+            else{
+                print("Empty Search")
+            }
+        }
+    }
+    
+    @IBAction func locationButton(_ sender: Any) {
+        setLocation()
+    }
+
     func fetchWeather(searchValue: String) {
         guard !searchValue.isEmpty else {
             return
         }
         
-        let url: URL? = URL( string: "\(baseURL)?key=\(apiKey)&q=\(searchValue)")!
+        let url: URL? = URL( string: "\(baseURL)?key=\(apiKey)&q=\(searchValue)")
         let urlSession = URLSession(configuration: .default)
         
         if let url = url {
@@ -160,25 +153,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 }
                 if let locationData = self.parseJson(data: data){
                     DispatchQueue.main.async{
-                        print("ASDSAD \(locationData)")
-                        self.setValuesInUI(data: locationData)
-                        var weatherObj = Weather(cityName: locationData.location.name, tempInC: String(locationData.current.temp_c), tempInF: String(locationData.current.temp_f), weatherCode: locationData.current.condition.code, tz_id: locationData.location.tz_id )
+                        self.setUI(data: locationData)
+                        let weatherObj = Weather(cityName: locationData.location.name, tempInC: String(locationData.current.temp_c), tempInF: String(locationData.current.temp_f), weatherCode: locationData.current.condition.code, tz_id: locationData.location.tz_id)
+                        var counter = 0
                         if self.count >= 1{
                             for weather in self.weatherList{
                                 let tz_id = weather.tz_id
-                                if(tz_id != locationData.location.tz_id){
-                                    self.weatherList.append(weatherObj)
-                                    print(tz_id)
-                                    print(locationData.location.tz_id)
+                                let name = weather.cityName
+                                if(tz_id == locationData.location.tz_id && name == locationData.location.name){
+                                    counter = 1
+                                    print("Location already searched")
                                     break
                                 }
+                            }
+                            if counter != 1{
+                                self.weatherList.append(weatherObj)
+                                print("Location added")
                             }
                         } else {
                             self.weatherList.append(weatherObj)
                             self.count += 1
-                            print(self.count)
                         }
-                        
                         print("Array: \(self.weatherList)")
                     }
                 }
@@ -189,8 +184,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     func setLocation(){
         if (self.locationManager.location != nil){
-            var location: CLLocationCoordinate2D = self.locationManager.location!.coordinate
-            print(location)
+            let location: CLLocationCoordinate2D = self.locationManager.location!.coordinate
             self.locationName = "\(location.latitude),\(location.longitude)"
             DispatchQueue.main.async{
                 self.fetchWeather(searchValue: self.locationName)
@@ -200,8 +194,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         }
     }
     
-    func setValuesInUI(data: LocationWrapper){
+    func setUI(data: LocationWrapper){
         DispatchQueue.main.async{
+            
+            let searchButtonImage = UIImage(systemName: "magnifyingglass")
+            self.searchButton.setImage(searchButtonImage, for: .normal)
+            let locationButtonImage = UIImage(systemName: "location.fill")
+            self.locationButton.setImage(locationButtonImage, for: .normal)
+            let config = UIImage.SymbolConfiguration(paletteColors: [.systemBlue, .systemYellow])
+            self.weatherImage.preferredSymbolConfiguration = config
+            self.lblCityName.text = self.locationName
+            self.lblTemp_F.isHidden = true
+            
+            
             self.lblCityName.text = data.location.name
             self.lblWeatherDescription.text = data.current.condition.text
             self.lblTemp_C.text = String(data.current.temp_c) + " °C"
@@ -214,9 +219,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             let dayBackgroundColor = UIColor(red: 0.667, green: 0.945, blue: 1, alpha: 1.00)
             let nightTextColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.00)
             let dayTextColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.00)
-            let nightTextFieldColor = UIColor(red: 0.27, green: 0.29, blue: 0.40, alpha: 1.00)
-            let dayTextFieldColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.00)
             let yellowColor = UIColor(red: 0.96, green: 0.78, blue: 0, alpha: 1.00)
+            
             if (data.current.is_day == 1) {
                 var dayColorsConfig = UIImage.SymbolConfiguration(paletteColors: [.white, yellowColor])
                 if(weatherCode == 1000 ){
@@ -230,7 +234,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 self.lblTemp_C.textColor = dayTextColor
                 self.lblTemp_F.textColor = dayTextColor
                 self.btnCities.tintColor = dayTextColor
-            } else  if (data.current.is_day == 0) {
+            }
+            else if (data.current.is_day == 0) {
                 let nightColorsConfig = UIImage.SymbolConfiguration(paletteColors: [.gray, .white])
                 self.weatherImage.preferredSymbolConfiguration = nightColorsConfig
                 self.weatherImage.image = weatherIconDictionary[weatherCode]?.generateNightImage()

@@ -14,7 +14,7 @@ class Weather {
     var weatherCode: Int
     var tz_id: String
     
-    init(cityName: String, tempInC: String, tempInF: String, weatherCode: Int, tz_id:String){
+    init(cityName: String, tempInC: String, tempInF: String, weatherCode: Int, tz_id: String){
         self.cityName = cityName
         self.tempInC = tempInC
         self.temInF = tempInF
